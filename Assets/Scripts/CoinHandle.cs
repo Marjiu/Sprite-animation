@@ -3,13 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class HeroHandle : MonoBehaviour
+public class CoinHandle : MonoBehaviour
 {
-    public Image image;
     public Sprite[] spriteList;
     private int index;
-    private int offset; 
-    private int fixedUpdateCounter = 0; //計算時間
+    public Image image;
+    private int fixedUpdateCounter=0;
+    private int offset=0;
+
     public bool reload(string name)
     {
         bool result = false;
@@ -27,32 +28,17 @@ public class HeroHandle : MonoBehaviour
         }
         return result;
     }
+    // Start is called before the first frame update
     void Start()
     {
-        reload("link_sprite_sheet");
+        reload("coin");
     }
+
+    // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.UpArrow))
-        {
-            offset = 30;
-        }
-
-        if (Input.GetKeyDown(KeyCode.DownArrow))
-        {
-            offset = 10;
-        }
-
-        if (Input.GetKeyDown(KeyCode.LeftArrow))
-        {
-            offset = 20;
-        }
-        if (Input.GetKeyDown(KeyCode.RightArrow))
-        {
-            offset = 40;
-        }
+        
     }
-
     private void FixedUpdate()
     {
         fixedUpdateCounter++;
@@ -60,7 +46,7 @@ public class HeroHandle : MonoBehaviour
         {
             //換圖
             index++;
-            if (index >= 9)
+            if (index >= 15)
             {
                 index = 0;
             }
@@ -68,5 +54,4 @@ public class HeroHandle : MonoBehaviour
             image.sprite = spriteList[index + offset];
         }
     }
-
 }
